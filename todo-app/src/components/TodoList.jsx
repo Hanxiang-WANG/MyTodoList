@@ -33,7 +33,25 @@ function TodoList() {
                 onChange={(e) => setNewTask(e.target.value)}
                 placeholder='Add a new task...'
             />
+            <button
+              onClick={addTask}
+              className='ml-2 p-2 bg-blue-500 text-white rounded hover:bg-blue-600'
+            >
+              Add
+            </button>
         </div>
+        <ul>
+          {tasks.map((task, index) => (
+            <li key={index} className='flex justify-between items-center mb-2'>
+              <span className={`flex-1 ${task.completed ? 'line-through text-gray-500' : ''}`} onClick={() => toggleTaskCompletion(index)}>
+                {task.text}
+              </span>
+              <button onClick={() => deleteTask(index)} className='ml-4 p-1 bg-red-500 text-white rounded hover:bg-red-600'>
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
     </div>
   )
 }
